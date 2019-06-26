@@ -24,7 +24,7 @@ function getResult(a,b,c) {
         console.log( x[0] );
     } else if (d > 0) {
         x[0] = (( -b - Math.sqrt(d) ) / ( 2 * a ) );
-        x[1] = (( -b + Math.sqrt(d) ) / ( 2 * a ) );
+        x[x.length] = (( -b + Math.sqrt(d) ) / ( 2 * a ) );
         console.log( x );
     }  
   
@@ -53,6 +53,30 @@ function calculateAverageRating(){
 }
 
 function getAverageMark(marks){
-    // код для задачи №3 писать здесь
-    //return averageMark;
+    let marks2 = [];
+    if (marks.length > 5) {
+       console.log(marks.length);
+       marks.splice(5);
+       console.log(marks);
+    } else {
+        console.log(marks.length);
+        marks2 = marks;
+    }
+
+    let sumOfMarks = 0;
+
+    for (let i = 0; i < marks.length; i++) {
+        console.log(marks[i]);
+        sumOfMarks += marks[i];
+        console.log(sumOfMarks);
+    }
+
+    // for (mark of marks) {    // почему не срабтывает по такому варианту?
+    //     sumOfMarks += mark
+    // };
+
+    let averageMark = (sumOfMarks / marks.length);
+    console.log(averageMark);
+
+    return averageMark;
 }
