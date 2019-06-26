@@ -11,7 +11,7 @@ function calculateQuadraticEquation(){
 }
 
 function getResult(a,b,c){
-    // код для задачи №1 писать здесь
+    //Начал. код для задачи №1 писать здесь
     //return x;
 }
 
