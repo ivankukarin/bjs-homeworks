@@ -29,7 +29,7 @@ function getResult(a,b,c) {
  
 }
 
-
+///////////////
 
 function calculateDrinkTask(){
     let name = window.personName.value;
@@ -39,16 +39,17 @@ function calculateDrinkTask(){
 }
 
 function askDrink(name,dateOfBirthday){
+    
     let now = new Date();
     let resultOfDrink;
 
-    // console.log((now.getFullYear() - dateOfBirthday.getFullYear() ) > 18 );  // для проверки условий по отдельности
+    let checkYear = ((now.getFullYear() - dateOfBirthday.getFullYear() ) > 18 );  // для проверки условий по отдельности
    
-    // console.log(( (now.getFullYear() - dateOfBirthday.getFullYear() ) === 18 ) && ( (now.getMonth() - dateOfBirthday.getMonth() ) >= 1 ));
+   let checkYearMonth = (( (now.getFullYear() - dateOfBirthday.getFullYear() ) === 18 ) && ( (now.getMonth() - dateOfBirthday.getMonth() ) >= 1 ));
 
-    // console.log(( (now.getFullYear() - dateOfBirthday.getFullYear() ) === 18 ) && (( now.getMonth() - dateOfBirthday.getMonth() ) === 0 ) && ( ( now.getDate() - dateOfBirthday.getDate()) >= 0 ) ) ;
+   let checkYearMonthDay = (( (now.getFullYear() - dateOfBirthday.getFullYear() ) === 18 ) && (( now.getMonth() - dateOfBirthday.getMonth() ) === 0 ) && ( ( now.getDate() - dateOfBirthday.getDate()) >= 0 ) ) ;
 
-    if ( ((now.getFullYear() - dateOfBirthday.getFullYear()) > 18 ) || (( (now.getFullYear() - dateOfBirthday.getFullYear() ) === 18 ) && ( (now.getMonth() - dateOfBirthday.getMonth() ) >= 1 ))  || (( (now.getFullYear() - dateOfBirthday.getFullYear() ) === 18 ) && (( now.getMonth() - dateOfBirthday.getMonth() ) === 0 ) && ( ( now.getDate() - dateOfBirthday.getDate()) >= 0 ) )  ) {
+    if ( checkYear || checkYearMonth  || checkYearMonthDay ) {
         resultOfDrink = `Не желаете ли олд-фэшн, ${name}?`;
     } else {
         resultOfDrink = `Сожалею, ${name}, но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!`;
@@ -58,7 +59,7 @@ function askDrink(name,dateOfBirthday){
    
 }
 
-
+///////////
 
 function calculateAverageRating(){
     let marks = window.marks.value.split("").map(Number).filter((n)=> !isNaN(n) && n > 0);
@@ -71,15 +72,13 @@ function getAverageMark(marks){
     if (marks.length > 5) {
        console.log(marks.length);
        marks.splice(5);
-       console.log(marks);
-    } else {
-        console.log(marks.length);
-    }
-
+    };
+    
+    console.log(marks.length);
+ 
     let sumOfMarks = 0;
 
     for (let i = 0; i < marks.length; i++) {  
-        console.log(marks[i]);
         sumOfMarks += marks[i];
         console.log(sumOfMarks);
     }
