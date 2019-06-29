@@ -1,4 +1,4 @@
-'use strict'
+// 'use strict'
 
 /////// Задача 1
 let a;
@@ -43,6 +43,11 @@ function showSolutionsMessage( a, b, c) {
     }  
 };
 
+showSolutionsMessage(1,2,3);
+showSolutionsMessage(7,20,-3);
+showSolutionsMessage(2,4,2);
+
+
 
 ///////// Задача 2
 
@@ -59,17 +64,20 @@ let data = {
 
     getAverageScoreOfLessons: function() {
         for (let prop in data) {
-            console.log(prop);
+            console.log(`${prop} ${prop.length} `);
+            
             let sumOfMarks = 0;
             let averageScoreOfLesson = 0;
-    
-            for (let i = 0; i < prop.length; i++) {  
-                sumOfMarks =+ prop[i];
-                
-                
+            
+            for (let i = 0; i < this.prop; i++) {
+                console.log(data.prop.length[i]);  
+                sumOfMarks += prop[i];
             };
-            averageScoreOfLesson = sumOfMarks / prop.length;
-            console.log(averageScoreOfLesson);
+            
+            console.log(sumOfMarks);
+
+            // averageScoreOfLesson = sumOfMarks / prop.length;
+            // console.log(averageScoreOfLesson);
 
             // return {
             //     prop: averageScoreOfLesson,
