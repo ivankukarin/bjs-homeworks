@@ -17,8 +17,8 @@ function getResult(a,b,c) {
  
     if (d < 0) {
         console.log("Корней нет!");
-    } else if (d == 0) {
-        x[0] = (- b / 2*a);
+    } else if (d === 0) {
+        x[0] = (- b / (2*a));
     } else if (d > 0) {
         x[0] = (( -b - Math.sqrt(d) ) / ( 2 * a ) );
         x[1] = (( -b + Math.sqrt(d) ) / ( 2 * a ) );
