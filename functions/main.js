@@ -1,6 +1,7 @@
 // 'use strict'
 
 /////// Задача 1
+
 let a;
 let b;
 let c;
@@ -47,8 +48,6 @@ showSolutionsMessage(1,2,3);
 showSolutionsMessage(7,20,-3);
 showSolutionsMessage(2,4,2);
 
-
-
 ///////// Задача 2
 
 let data = {
@@ -61,34 +60,38 @@ let data = {
     poetry: [3, 4, 5, 2, 2 ],
     chemistry: [4, 5 ],
     french: [ 4, 3, 5 ],
+  
+};
 
-    getAverageScoreOfLessons: function() {
-        for (let prop in data) {
-            console.log(`${prop} ${prop.length} `);
-            
-            let sumOfMarks = 0;
-            let averageScoreOfLesson = 0;
-            
-            for (let i = 0; i < this.prop; i++) {
-                console.log(data.prop.length[i]);  
-                sumOfMarks += prop[i];
-            };
-            
-            console.log(sumOfMarks);
+function getAverageScore (arr, newArr) {
 
-            // averageScoreOfLesson = sumOfMarks / prop.length;
-            // console.log(averageScoreOfLesson);
-
-            // return {
-            //     prop: averageScoreOfLesson,
-            // };
-    
+    function getAverageScoreOfLesson(arr) {   
+        let sumOfMarks = 0;        
+        for (let i = 0; i < arr.length; i++) {
+            sumOfMarks += arr[i];
         };
-    },
+        return sumOfMarks / arr.length;
+    }
+    
+    for (let prop in arr) {
+        let value = arr [ prop ];
 
+        newArr = arr ;
+        newArr[prop] = getAverageScoreOfLesson(value);
+    }
+
+    let j = 0;
+    let sum = 0;
+
+    for (let prop in newArr) {
+        sum +=  newArr [ prop ];
+        j++;
+    }
+
+    newArr.average = ( sum / j );
+
+    console.log(newArr);
 };
 
-function getAverageScore (data) {
-    console.log(data);   
-};
+getAverageScore (data);
 
