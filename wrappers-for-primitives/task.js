@@ -13,20 +13,62 @@ function calculateMortgage() {
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
     
-    let P = percent/100/12;
+    function replaceComma (percent) {
+        let re = /,/;
+        let percentWithoutComma = percent.replace(re, '.');
+        console.log(percentWithoutComma);
+        return percentWithoutComma;
+
+    };
+
+
+    let P = +(parseFloat(replaceComma(percent))/100/12);
     console.log(P);
-    const calcMonths = () => 
-       Math.floor((((new Date(date)).getTime()) - (new Date().getTime()))/( 86400000 * 29.4 )); /// принимаю 29.4 дня в месяце усредненное 
+
+    function checkisNumber(a, b, c) {
+        let arr = {a, b, c };
+        for (let prop in arr) {
+            if (isNaN (arr[prop])) {
+                console.log(`Параметр ${arr.prop} содержит неправильное значение ${arr[prop]}`);
+            }
+        }
+    }
     
+    checkisNumber(percent, contribution, amount);
+
+    function checkDays(date){
+        let result;
+        if (((new Date(date).getDate())- new Date().getDate()) < 0) {
+            result = -1;
+        } else { result = 0 } ;
+        return result;
+    }
+    
+    const calcMonths = () => {
+        let monthOfYear = ((((new Date(date)).getFullYear()) - (new Date().getFullYear())) * 12);
+        let months = ((new Date(date).getMonth()) - (new Date().getMonth())); 
+        return (monthOfYear + months + checkDays(date)) ;
+    }
+
     let n = calcMonths();
-    console.log(n);
-    let monthlyPayment = amount * ( P + P /((Math.pow (( 1 + P ), n )-1)));
-    console.log(monthlyPayment);
-    let totalAmount = monthlyPayment * n;
+    console.log(`Срок кредита, мес = ${n}`);
+
+    const loanAmount = () => {
+        if ((amount-contribution) >= 0) { return (amount - contribution);
+        } else { console.log(`Сумма кредита указана неверно, получилось: ${amount - contribution} `)
+        }
+    }    
+        
+    let monthlyPayment = +( loanAmount() * ( P + P /((Math.pow (( 1 + P ), n )-1))) ).toFixed(2);
     
+    console.log(`Ежемесячный платеж составит: ${monthlyPayment}`);
+    
+    let totalAmount = (monthlyPayment * n).toFixed(2);
+    let totalAll = (+(totalAmount + contribution)).toFixed(2);
+    console.log(`Сумма всех оплат составит ${totalAll} руб.`);
 
     return totalAmount;
-}
+};
 
 
 //////////// Задача 2
