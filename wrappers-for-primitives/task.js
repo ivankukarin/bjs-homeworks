@@ -25,11 +25,11 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
     let P = +(parseFloat(replaceComma(percent))/100/12);
     console.log(P);
 
-    function checkisNumber(a, b, c) {
-        let arr = {a, b, c };
+    function checkisNumber( percent, contribution, amount) {
+        let arr = { percent, contribution, amount };
         for (let prop in arr) {
-            if (isNaN (arr[prop])) {
-                console.log(`Параметр ${arr.prop} содержит неправильное значение ${arr[prop]}`);
+            if (isNaN(arr[prop])) {
+                console.log(`Параметр ${prop} содержит неправильное значение ${arr[prop]}`);
             }
         }
     }
@@ -80,7 +80,13 @@ function sayHello() {
     span.textContent = greeting;
 }
 
+
 function getGreeting(name) {
-    // код для задачи №2 писать здесь
-    //return greeting;
+   function isName (name) {
+        if ((name === "") || (name === "undefined") || (!Boolean(name))) { 
+            return "Аноним";
+            } else { 
+                return name };
+   };
+   return (`Привет, мир! Меня зовут ${isName(name)}`);
 }
