@@ -1,13 +1,21 @@
 function initCheckBirthday() {
     const birthday = document.getElementById('birthday').value;
-
+    console.log(birthday);
     const result = checkBirthday(birthday) ? "Да" : "Нет";
 
     document.getElementById('disclaimer').innerHTML = result;   
 }
 
 function checkBirthday(birthday) {
-    // код для задачи №1 писать здесь
+    let now = Date.now();
+    console.log(now);
+    let userBirthday = new Date (birthday).getTime();
+    console.log(userBirthday);
+    let diff = now - userBirthday;
+    console.log(diff);
+    let age = ( diff / ( (31622400000+(31536000000*3)) /4) );
+    console.log(age);
+    return (age>18);
 }
 
 function initPrintAnimalSound() {
