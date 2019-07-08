@@ -104,31 +104,18 @@ let secretData = {
 
 function getPersonData( secretData ) {
 
-    let result = {
-        firstname: "",
-        lastname: "",
+    function checkName (obj) {
+           
+        if ( obj === 0) {return "Родриго"
+        } else if ( obj === 1) { return "Эмильо"
+            };
     };
-    
-    function identName (secretData) {
-              
-        if ( secretData.aaa === 0 ) {
-            result.firstname = "Родриго";
-        };
 
-        if ( secretData.aaa === 1) {
-            result.firstname = "Эмильо";
-        };
-
-        if ( secretData.bbb === 0 ) {
-            result.lastname = "Родриго";          
-        };
-        if ( secretData.bbb === 1 ) {
-            result.lastname = "Эмильо";
-        };
-    }
-
-    identName(secretData);
-
+    let result = {
+        firstname: checkName(secretData.aaa),
+        lastname: checkName(secretData.bbb),
+    }; 
+     
     console.log(result);
 }
 
