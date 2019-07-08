@@ -53,13 +53,13 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
     let n = calcMonths();
     console.log(`Срок кредита, мес = ${n}`);
 
-    const loanAmount = () => {
+    const checkAmount = () => {
         if ((amount-contribution) >= 0) { return (amount - contribution);
         } else { console.log(`Сумма кредита указана неверно, получилось: ${amount - contribution} `)
         }
     }    
         
-    let monthlyPayment = +( loanAmount() * ( P + P /((Math.pow (( 1 + P ), n )-1))) ).toFixed(2);
+    let monthlyPayment = +( checkAmount() * ( P + P /((Math.pow (( 1 + P ), n )-1))) ).toFixed(2);
     
     console.log(`Ежемесячный платеж составит: ${monthlyPayment}`);
     
@@ -82,11 +82,11 @@ function sayHello() {
 
 
 function getGreeting(name) {
-   function isName (name) {
+   function getName (name) {
         if ((name === "") || (name === "undefined") || (!Boolean(name))) { 
             return "Аноним";
             } else { 
                 return name };
    };
-   return (`Привет, мир! Меня зовут ${isName(name)}`);
+   return (`Привет, мир! Меня зовут ${getName(name)}`);
 }
