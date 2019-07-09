@@ -8,11 +8,8 @@ function initCheckBirthday() {
 
 function checkBirthday(birthday) {
     let now = Date.now();
-    console.log(now);
     let userBirthday = new Date (birthday).getTime();
-    console.log(userBirthday);
     let diff = now - userBirthday;
-    console.log(diff);
     let age = ( diff / ( (31622400000+(31536000000*3)) /4) );
     console.log(age);
     return (age>18);
@@ -31,12 +28,12 @@ function initPrintAnimalSound() {
 function getAnimalSound(animal) {
     
     this.animal = animal;
+    let sound = animal.sound;
 
     if (!animal) {
         return null
     } else if (animal) { 
-        let sound = animal.sound;
-        return sound 
+        return sound;
     }
 };
    
@@ -54,5 +51,7 @@ function initCalculateStatement() {
 }
 
 function getAverageMark(marks) {
-    // код для задачи №3 писать здесь
-}
+    let average;
+    for (let prop in marks) {
+
+    }
