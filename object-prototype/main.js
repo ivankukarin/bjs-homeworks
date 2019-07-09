@@ -55,11 +55,13 @@ function getAverageMark(marks) {
     let sum = 0;
     let i = 0;    
     for (let prop in marks) {
+        if ( +marks[prop] ) {
         sum += +marks[prop];
         i++;
+        }
     }
     let average = sum/i;
     let roundedAverage = Math.round(average);
-    
+
     return roundedAverage;
 }
