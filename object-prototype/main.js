@@ -32,7 +32,7 @@ function getAnimalSound(animal) {
 
     if (!animal) {
         return null
-    } else if (animal) { 
+        } else if (animal) { 
         return sound;
     }
 };
