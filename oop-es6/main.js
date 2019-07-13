@@ -136,3 +136,50 @@ class StormCane extends Cane {
 
 const caneStorm = new Cane();
 console.log(caneStorm);
+
+
+///////////// Задача 3
+
+class StudentLog {
+    constructor (){
+        
+    }
+
+    getName(){
+        return this.name
+    }
+
+    addGrade (grade, subject){
+        if(!(grade === NaN) & (grade%1 === 0)  & (1 <= +grade <= 5)) {
+            if (this.hasOwnProperty(subject)) {
+                this.subject.push(grade);               
+            }  else {
+                this.subject = subject[grade];
+                
+            }     
+        } else {
+            console.log(`Вы пытались поставить оценку ${grade} по предмету ${subject}. Допускаются только числа от 1 до 5.`)
+        }
+        return subject.length
+    }
+
+    getAverageBySubject(subject){
+        if (this.hasOwnProperty(subject)) {
+            let sum = 0;
+            for (let i = 0; i <= this.subject.length; i++){
+                sum += subject[i];
+            };
+            return sum/subject.length;
+        } else { return 0};
+    }
+
+    // getTotalAverage(){
+
+    // }
+}
+
+const loga = new StudentLog ('Кукарин Иван');
+loga.addGrade(2, 'algebra');
+loga.addGrade(4, 'algebra');
+loga.addGrade(5, 'geometry');
+loga.addGrade(4, 'geometry');
