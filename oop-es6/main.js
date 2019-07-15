@@ -178,13 +178,13 @@ class StudentLog {
     getTotalAverage() {
         function isNumeric(n) {
             return !isNaN(parseFloat(n)) && isFinite(n);
-          }
+        }
         let numGrade = 0;
         let sumGrade = 0;
         
-        for (let subject in this) {
-            if (isNumeric( this[subject][0])) {
-                numGrade += this[subject].length;                
+        for (let subject in this) {            
+            if (Array.isArray(this[subject])) {                
+                numGrade += this[subject].length;                              
                 for (let i = 0; i < this[subject].length; i++) {
                     sumGrade+= this[subject][i];
                 }
