@@ -141,8 +141,8 @@ console.log(caneStorm);
 ///////////// Задача 3
 
 class StudentLog {
-    constructor (){
-        
+    constructor (name){
+        this.name = name;
     }
 
     getName(){
@@ -152,34 +152,58 @@ class StudentLog {
     addGrade (grade, subject){
         if(!(grade === NaN) & (grade%1 === 0)  & (1 <= +grade <= 5)) {
             if (this.hasOwnProperty(subject)) {
-                this.subject.push(grade);               
+                this[subject].push(grade);                  
             }  else {
-                this.subject = subject[grade];
-                
+                this[subject] = new Array();
+                this[subject].push(grade);
             }     
         } else {
             console.log(`Вы пытались поставить оценку ${grade} по предмету ${subject}. Допускаются только числа от 1 до 5.`)
         }
-        return subject.length
+        
+        return this[subject].length
     }
 
     getAverageBySubject(subject){
-        if (this.hasOwnProperty(subject)) {
-            let sum = 0;
-            for (let i = 0; i <= this.subject.length; i++){
-                sum += subject[i];
+        let sum = 0;
+        if (this[subject]) {
+            
+            for (let i = 0; i < this[subject].length; i++){
+                sum += this[subject][i];
             };
-            return sum/subject.length;
+            return (sum / this[subject].length );
         } else { return 0};
     }
 
-    // getTotalAverage(){
-
-    // }
+    getTotalAverage() {
+        function isNumeric(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+          }
+        let numGrade = 0;
+        let sumGrade = 0;
+        
+        for (let subject in this) {
+            if (isNumeric( this[subject][0])) {
+                numGrade += this[subject].length;                
+                for (let i = 0; i < this[subject].length; i++) {
+                    sumGrade+= this[subject][i];
+                }
+            }       
+        }
+        return sumGrade/numGrade;
+    }
 }
 
-const loga = new StudentLog ('Кукарин Иван');
-loga.addGrade(2, 'algebra');
-loga.addGrade(4, 'algebra');
-loga.addGrade(5, 'geometry');
-loga.addGrade(4, 'geometry');
+const log = new StudentLog('Олег Никифоров');
+
+log.addGrade(2, 'algebra');
+log.addGrade(4, 'algebra');
+log.addGrade(5, 'geometry');
+log.addGrade(4, 'geometry');
+
+console.log(log);
+console.log(log.getAverageBySubject('geometry')); // 4.5
+console.log(log.getAverageBySubject('algebra')); // 3
+console.log(log.getAverageBySubject('math')); // 0
+
+console.log(log.getTotalAverage())
