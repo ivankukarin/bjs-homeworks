@@ -27,50 +27,47 @@ function memoize(fn, limit) {
   return function() {
     let args = Array.from(arguments);
     const checkAviabl = memory.find(x => compareArrays(x.arg, args));
+    let resultCalc;
 
     console.group(`Функция выполнялась ${fn.name} ${++i} раз(a)`);
     console.log(memory);
 
-    if (checkAviabl != undefined) {
-      let resultCalc = checkAviabl.result;
-      console.log(`Функция вызвана из памяти. Ответ: ${resultCalc}`);
-      return resultCalc;
-    } else {
+    if (checkAviabl === undefined) {
       let resultCalc = fn.apply(null, args);
       console.log(
-        `Функция ${
-          fn.name
-        } вызвана НЕ из памяти. Вот какой результат вычисления: ${resultCalc}`
+        `Функция вызвана НЕ из памяти. Вот какой результат вычисления: ${resultCalc}`
       );
-      console.groupEnd;
-
       memory.push({ arg: args, result: resultCalc });
       if (memory.length > limit) {
         memory.shift();
       }
-      return resultCalc;
+    } else {
+      let resultCalc = checkAviabl.result;
+      console.log(`Функция вызвана из памяти. Ответ: ${resultCalc}`);
     }
+    console.groupEnd();
+    return resultCalc;
   };
 }
 
-// const sum = (a, b) => a + b;
-// const mSum = memoize(sum, 4);
+const sum = (a, b) => a + b;
+const mSum = memoize(sum, 4);
 
-// let test = memoize((a, b, c) => a + b + c, 3);
-// test(7, 7, 7);
-// mSum(3, 4); // 7
-// mSum(3, 4); // 7
-// mSum(7, 9); // 7
-// mSum(1, 9);
-// mSum(9987, 12);
-// console.log(mSum(2, 6));
-// const func = memoize((a, b, c) => a + b + c, 3);
-// func(1, 6, 11);
-// func(343, 9, 0);
-// func(333, 9, 0);
-// func(343, 9, 0);
-// func(333, 9, 0);
-// func(313, 9, 0);
-// func(300, 1, 0);
-// mSum(6666, 4); // 7
-// test(7, 7, 7);
+let test = memoize((a, b, c) => a + b + c, 3);
+test(7, 7, 7);
+mSum(3, 4); // 7
+mSum(3, 4); // 7
+mSum(7, 9); // 7
+mSum(1, 9);
+mSum(9987, 12);
+console.log(mSum(2, 6));
+const func = memoize((a, b, c) => a + b + c, 3);
+func(1, 6, 11);
+func(343, 9, 0);
+func(333, 9, 0);
+func(343, 9, 0);
+func(333, 9, 0);
+func(313, 9, 0);
+func(300, 1, 0);
+mSum(6666, 4); // 7
+test(7, 7, 7);
